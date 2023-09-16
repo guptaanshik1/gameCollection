@@ -1,7 +1,7 @@
-import AppLayout from "./components/Layout/AppLayout";
+import { Button } from "@chakra-ui/react";
 
 function App() {
-  return <AppLayout />;
+  return <Button colorScheme="blue">Button</Button>;
 }
 
 export default App;
