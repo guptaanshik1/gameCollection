@@ -8,18 +8,15 @@ const AppLayout = () => {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
+      p={"10px 16px"}
     >
-      <GridItem area="nav" bg="red">
+      <GridItem area="nav">
         <Navbar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" bg="orange">
-          Aside
-        </GridItem>
+        <GridItem area="aside">Aside</GridItem>
       </Show>
-      <GridItem area="main" bg="green">
-        Main
-      </GridItem>
+      <GridItem area="main">Main</GridItem>
     </Grid>
   );
 };
