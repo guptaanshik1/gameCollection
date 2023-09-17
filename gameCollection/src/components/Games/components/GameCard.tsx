@@ -1,4 +1,4 @@
-import { Card, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Card, Flex, Heading, Image } from "@chakra-ui/react";
 import { IAllGameResult } from "../../../data/AllGame";
 import PlatformIconsMap from "./PlatformIconsMap";
 
