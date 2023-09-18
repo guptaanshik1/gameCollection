@@ -1,9 +1,11 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Flex, Show } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import { Games } from "../Games";
 import GenreList from "../Genres/GenreList";
 import { useState } from "react";
 import { IQueryObject } from "../../data/common";
+import PlatformList from "../Platforms/PlatformList";
+import SortList from "../SortOrder/SortList";
 
 const AppLayout = () => {
   const [queryObject, setQueryObject] = useState<IQueryObject>(
@@ -36,6 +38,20 @@ const AppLayout = () => {
         </GridItem>
       </Show>
       <GridItem area="main" p={"10px"}>
+        <Flex my={"10px"} gridGap={"20px"}>
+          <PlatformList
+            platform={queryObject?.platform}
+            onSelectedPlatform={(platform) =>
+              setQueryObject({ ...queryObject, platform })
+            }
+          />
+          <SortList
+            onSelectSortOrder={(order) =>
+              setQueryObject({ ...queryObject, order })
+            }
+            sortOrder={queryObject?.order}
+          />
+        </Flex>
         <Games queryObject={queryObject} />
       </GridItem>
     </Grid>

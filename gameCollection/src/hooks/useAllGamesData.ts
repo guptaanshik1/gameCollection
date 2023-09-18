@@ -5,8 +5,14 @@ import useData from "./useData";
 const useAllGamesData = (queryObject: IQueryObject) =>
   useData<IAllGameResult>(
     "/games",
-    { params: { genres: queryObject?.genre?.id } },
-    [queryObject?.genre?.id]
+    {
+      params: {
+        genres: queryObject?.genre?.id,
+        platforms: queryObject?.platform?.id,
+        ordering: queryObject?.order,
+      },
+    },
+    [queryObject]
   );
 
 export default useAllGamesData;
