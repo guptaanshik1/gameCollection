@@ -8,3 +8,7 @@ export interface IFetchResponse<T> {
 }
 
 export type TSelectedGenre = IGenreResult | null;
+
+export interface IQueryObject {
+  genre: TSelectedGenre;
+}

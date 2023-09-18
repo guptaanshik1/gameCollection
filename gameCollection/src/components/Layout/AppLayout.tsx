@@ -3,14 +3,12 @@ import Navbar from "../Navbar";
 import { Games } from "../Games";
 import GenreList from "../Genres/GenreList";
 import { useState } from "react";
-import { TSelectedGenre } from "../../data/common";
+import { IQueryObject } from "../../data/common";
 
 const AppLayout = () => {
-  const [selectedGenre, setSelectedGenre] = useState<TSelectedGenre>(null);
-
-  const onSelectedGenre = (genre: TSelectedGenre) => {
-    setSelectedGenre(genre);
-  };
+  const [queryObject, setQueryObject] = useState<IQueryObject>(
+    {} as IQueryObject
+  );
 
   return (
     <Grid
@@ -30,13 +28,15 @@ const AppLayout = () => {
       <Show above="lg">
         <GridItem area="aside" p={"10px"}>
           <GenreList
-            onSelectedGenre={onSelectedGenre}
-            selectedGenre={selectedGenre}
+            onSelectedGenre={(genre) =>
+              setQueryObject({ ...queryObject, genre })
+            }
+            selectedGenre={queryObject?.genre}
           />
         </GridItem>
       </Show>
       <GridItem area="main" p={"10px"}>
-        <Games selectedGenre={selectedGenre} />
+        <Games queryObject={queryObject} />
       </GridItem>
     </Grid>
   );

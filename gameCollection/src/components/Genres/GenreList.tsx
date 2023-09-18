@@ -33,8 +33,6 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: IProps) => {
   return (
     <List>
       {genres?.map((genre) => {
-        console.log("genre:", genre);
-        console.log("selectedGenre:", selectedGenre);
         return (
           <ListItem key={genre?.id} py={"5px"}>
             <HStack gridGap={"10px"}>

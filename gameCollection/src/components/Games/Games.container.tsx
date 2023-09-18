@@ -1,14 +1,14 @@
 import GamesView from "./Games.view";
 import { GamesContext } from "./utils/context";
 import useAllGamesData from "../../hooks/useAllGamesData";
-import { TSelectedGenre } from "../../data/common";
+import { IQueryObject, TSelectedGenre } from "../../data/common";
 
 interface IProps {
-  selectedGenre: TSelectedGenre;
+  queryObject: IQueryObject;
 }
 
-export default function GamesContainer({ selectedGenre }: IProps) {
-  const { data: games, error, isLoading } = useAllGamesData(selectedGenre);
+export default function GamesContainer({ queryObject }: IProps) {
+  const { data: games, error, isLoading } = useAllGamesData(queryObject);
 
   return (
     <GamesContext.Provider value={{ games, error, isLoading }}>
