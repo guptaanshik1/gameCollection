@@ -3,10 +3,14 @@ import Navbar from "../Navbar";
 import { Games } from "../Games";
 import GenreList from "../Genres/GenreList";
 import { useState } from "react";
-import { IGenre } from "../../data/AllGame";
+import { TSelectedGenre } from "../../data/common";
 
 const AppLayout = () => {
-  const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<TSelectedGenre>(null);
+
+  const onSelectedGenre = (genre: TSelectedGenre) => {
+    setSelectedGenre(genre);
+  };
 
   return (
     <Grid
@@ -25,11 +29,14 @@ const AppLayout = () => {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" p={"10px"}>
-          <GenreList />
+          <GenreList
+            onSelectedGenre={onSelectedGenre}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Show>
       <GridItem area="main" p={"10px"}>
-        <Games />
+        <Games selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );
