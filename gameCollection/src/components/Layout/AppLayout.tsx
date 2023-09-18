@@ -6,6 +6,7 @@ import { useState } from "react";
 import { IQueryObject } from "../../data/common";
 import PlatformList from "../Platforms/PlatformList";
 import SortList from "../SortOrder/SortList";
+import GameHeading from "../GameHeading";
 
 const AppLayout = () => {
   const [queryObject, setQueryObject] = useState<IQueryObject>(
@@ -25,7 +26,9 @@ const AppLayout = () => {
       p={"10px 16px"}
     >
       <GridItem area="nav">
-        <Navbar />
+        <Navbar
+          onSearch={(search) => setQueryObject({ ...queryObject, search })}
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" p={"10px"}>
@@ -38,6 +41,7 @@ const AppLayout = () => {
         </GridItem>
       </Show>
       <GridItem area="main" p={"10px"}>
+        <GameHeading queryObject={queryObject} />
         <Flex my={"10px"} gridGap={"20px"}>
           <PlatformList
             platform={queryObject?.platform}

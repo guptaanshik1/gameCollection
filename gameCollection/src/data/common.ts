@@ -15,4 +15,5 @@ export interface IQueryObject {
   genre: TSelectedGenre;
   platform: TSelectedPlatform;
   order: string;
+  search: string;
 }

@@ -1,5 +1,6 @@
 import {
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -31,29 +32,34 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: IProps) => {
   }
 
   return (
-    <List>
-      {genres?.map((genre) => {
-        return (
-          <ListItem key={genre?.id} py={"5px"}>
-            <HStack gridGap={"10px"}>
-              <Image
-                boxSize={"44px"}
-                borderRadius={10}
-                src={getCroppedImageUrl(genre?.image_background)}
-                objectFit={"cover"}
-              />
-              <Text
-                fontWeight={genre?.id === selectedGenre?.id ? 700 : 400}
-                cursor={"pointer"}
-                onClick={() => onSelectedGenre(genre)}
-              >
-                {genre?.name}
-              </Text>
-            </HStack>
-          </ListItem>
-        );
-      })}
-    </List>
+    <>
+      <Heading as="h1" mb={"10px"}>
+        Genres
+      </Heading>
+      <List>
+        {genres?.map((genre) => {
+          return (
+            <ListItem key={genre?.id} py={"5px"}>
+              <HStack gridGap={"10px"}>
+                <Image
+                  boxSize={"44px"}
+                  borderRadius={10}
+                  src={getCroppedImageUrl(genre?.image_background)}
+                  objectFit={"cover"}
+                />
+                <Text
+                  fontWeight={genre?.id === selectedGenre?.id ? 700 : 400}
+                  cursor={"pointer"}
+                  onClick={() => onSelectedGenre(genre)}
+                >
+                  {genre?.name}
+                </Text>
+              </HStack>
+            </ListItem>
+          );
+        })}
+      </List>
+    </>
   );
 };
 

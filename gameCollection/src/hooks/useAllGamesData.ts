@@ -10,6 +10,7 @@ const useAllGamesData = (queryObject: IQueryObject) =>
         genres: queryObject?.genre?.id,
         platforms: queryObject?.platform?.id,
         ordering: queryObject?.order,
+        search: queryObject?.search,
       },
     },
     [queryObject]
