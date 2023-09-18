@@ -1,7 +1,7 @@
 import GamesView from "./Games.view";
 import { GamesContext } from "./utils/context";
 import useAllGamesData from "../../hooks/useAllGamesData";
-import { IQueryObject, TSelectedGenre } from "../../data/common";
+import { IQueryObject } from "../../data/common";
 
 interface IProps {
   queryObject: IQueryObject;
