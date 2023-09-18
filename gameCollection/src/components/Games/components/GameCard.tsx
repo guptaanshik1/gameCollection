@@ -1,12 +1,4 @@
-import {
-  Box,
-  Card,
-  CardBody,
-  Flex,
-  HStack,
-  Heading,
-  Image,
-} from "@chakra-ui/react";
+import { Card, CardBody, Flex, HStack, Heading, Image } from "@chakra-ui/react";
 import { IAllGameResult } from "../../../data/AllGame";
 import PlatformIconsMap from "./PlatformIconsMap";
 import CriticScore from "./CriticScore";
