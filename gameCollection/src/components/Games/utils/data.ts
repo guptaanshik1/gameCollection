@@ -1,9 +1,10 @@
-import { IAllGameResult } from "../../../data/AllGame";
-import { TSelectedGenre } from "../../../data/common";
+import { IAllGameResult, IAllGamesResponse } from "../../../data/AllGame";
+import { IFetchResponse, TSelectedGenre } from "../../../data/common";
 
 export interface IGameContextData {
-  games: IAllGameResult[];
-  error: string;
+  gamesData: IFetchResponse<IAllGamesResponse> | undefined;
+  games: IAllGameResult[] | undefined;
+  error: Error | null;
   isLoading: boolean;
   selectedGenre?: TSelectedGenre;
 }

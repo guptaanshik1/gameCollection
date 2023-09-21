@@ -1,19 +1,19 @@
-import { IAllGameResult } from "../data/AllGame";
-import { IQueryObject } from "../data/common";
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import { IAllGamesResponse } from "../data/AllGame";
+import { IFetchResponse, IQueryObject } from "../data/common";
+import apiClient from "../services/apiClient";
 
-const useAllGamesData = (queryObject: IQueryObject) =>
-  useData<IAllGameResult>(
-    "/games",
-    {
+const useAllGamesData = (queryObject: IQueryObject) => {
+  const { data, error, isLoading } = useQuery(["games", queryObject], () =>
+    apiClient.get<IFetchResponse<IAllGamesResponse>>("/games", {
       params: {
         genres: queryObject?.genre?.id,
-        platforms: queryObject?.platform?.id,
+        parent_platforms: queryObject?.platform?.id,
         ordering: queryObject?.order,
         search: queryObject?.search,
       },
-    },
-    [queryObject]
+    })
   );
-
+  return { data: data?.data, error: error as Error, isLoading };
+};
 export default useAllGamesData;

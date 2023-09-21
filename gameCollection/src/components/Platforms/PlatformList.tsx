@@ -20,7 +20,7 @@ const PlatformList = ({ onSelectedPlatform, platform }: IProps) => {
         {platform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
-        {platforms?.map((platform) => {
+        {platforms?.results?.map((platform) => {
           return (
             <MenuItem
               key={platform?.id}

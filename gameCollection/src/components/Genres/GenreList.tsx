@@ -37,7 +37,7 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: IProps) => {
         Genres
       </Heading>
       <List>
-        {genres?.map((genre) => {
+        {genres?.results?.map((genre) => {
           return (
             <ListItem key={genre?.id} py={"5px"}>
               <HStack gridGap={"10px"}>
