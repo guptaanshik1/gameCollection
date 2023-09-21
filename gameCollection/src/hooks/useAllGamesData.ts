@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { IAllGamesResponse } from "../data/AllGame";
-import { IFetchResponse, IQueryObject } from "../data/common";
-import apiClient from "../services/apiClient";
+import { IQueryObject } from "../data/common";
+import ApiClient from "../services/apiClient";
+
+const apiClient = new ApiClient<IAllGamesResponse>("/games");
 
 const useAllGamesData = (queryObject: IQueryObject) => {
   const { data, error, isLoading } = useQuery(["games", queryObject], () =>
-    apiClient.get<IFetchResponse<IAllGamesResponse>>("/games", {
+    apiClient.get({
       params: {
         genres: queryObject?.genre?.id,
         parent_platforms: queryObject?.platform?.id,
@@ -16,4 +18,5 @@ const useAllGamesData = (queryObject: IQueryObject) => {
   );
   return { data: data?.data, error: error as Error, isLoading };
 };
+
 export default useAllGamesData;

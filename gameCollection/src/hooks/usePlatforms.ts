@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { IPlatforms } from "../data/platform";
-import apiClient from "../services/apiClient";
-import { IFetchResponse } from "../data/common";
+import ApiClient from "../services/apiClient";
+
+const apiClient = new ApiClient<IPlatforms>("/platforms/lists/parents");
 
 export const usePlatforms = () => {
   const { data, error, isLoading } = useQuery(
     ["platforms"],
-    () => apiClient.get<IFetchResponse<IPlatforms>>("/platforms/lists/parents"),
+    () => apiClient.get(),
     {
       staleTime: 24 * 60 * 60 * 1000,
     }
@@ -14,4 +15,3 @@ export const usePlatforms = () => {
 
   return { data: data?.data, error, isLoading };
 };
-// "/platforms/lists/parents"
