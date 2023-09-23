@@ -1,5 +1,4 @@
 import { Badge } from "@chakra-ui/react";
-import { isNullOrUndefined } from "../../../utils/isNullorUndefined";
 
 interface IProps {
   score: number | undefined;
