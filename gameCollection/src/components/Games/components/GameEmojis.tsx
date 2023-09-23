@@ -4,11 +4,11 @@ import thumbsUp from "../../../assets/thumbs-up.webp";
 import { Image, ImageProps } from "@chakra-ui/react";
 
 interface IProps {
-  rating: number;
+  rating: number | undefined;
 }
 
 const GameEmojis = ({ rating }: IProps) => {
-  if (rating < 3) return null;
+  if (!rating || rating < 3) return null;
   const emojiRatingMapper: { [key: number]: ImageProps } = {
     3: { src: meh, alt: "mehEmoji", boxSize: "25px" },
     4: { src: thumbsUp, alt: "thumbsUpEmoji", boxSize: "25px" },

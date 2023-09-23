@@ -1,10 +1,13 @@
 import { Badge } from "@chakra-ui/react";
+import { isNullOrUndefined } from "../../../utils/isNullorUndefined";
 
 interface IProps {
-  score: number;
+  score: number | undefined;
 }
 
 const CriticScore = ({ score }: IProps) => {
+  if (!score) return null;
+
   const getScoreColor = () => {
     if (score >= 75) return "green";
     else if (score >= 60 && score < 75) return "yellow";

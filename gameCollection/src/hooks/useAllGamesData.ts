@@ -1,22 +1,49 @@
-import { useQuery } from "@tanstack/react-query";
-import { IAllGamesResponse } from "../data/AllGame";
+import { axiosInstance } from "../services/apiClient";
 import { IQueryObject } from "../data/common";
-import ApiClient from "../services/apiClient";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { IAllGamesResponse } from "../data/AllGame";
 
-const apiClient = new ApiClient<IAllGamesResponse>("/games");
+async function getGames(
+  queryObject: IQueryObject,
+  pageParam: number
+): Promise<IAllGamesResponse | undefined> {
+  const { data } = await axiosInstance.get("/games", {
+    params: {
+      genres: queryObject?.genre?.id,
+      parent_platforms: queryObject?.platform?.id,
+      ordering: queryObject?.order,
+      search: queryObject?.search,
+      page: pageParam,
+    },
+  });
 
-const useAllGamesData = (queryObject: IQueryObject) => {
-  const { data, error, isLoading } = useQuery(["games", queryObject], () =>
-    apiClient.get({
-      params: {
-        genres: queryObject?.genre?.id,
-        parent_platforms: queryObject?.platform?.id,
-        ordering: queryObject?.order,
-        search: queryObject?.search,
+  return data;
+}
+
+export default function useAllGamesData(queryObject: IQueryObject) {
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteQuery(
+    ["games", queryObject],
+    ({ pageParam = 1 }) => getGames(queryObject, pageParam),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage?.next ? allPages?.length + 1 : undefined;
       },
-    })
+    }
   );
-  return { data: data?.data, error: error as Error, isLoading };
-};
 
-export default useAllGamesData;
+  return {
+    data,
+    error: error as Error,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  };
+}

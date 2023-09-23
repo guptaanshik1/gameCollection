@@ -1,10 +1,14 @@
-import { IAllGameResult, IAllGamesResponse } from "../../../data/AllGame";
-import { IFetchResponse, TSelectedGenre } from "../../../data/common";
+import { InfiniteData } from "@tanstack/react-query";
+import { IAllGamesResponse } from "../../../data/AllGame";
+import { TSelectedGenre } from "../../../data/common";
 
 export interface IGameContextData {
-  gamesData: IFetchResponse<IAllGamesResponse> | undefined;
-  games: IAllGameResult[] | undefined;
+  gamesData?: InfiniteData<IAllGamesResponse | undefined> | undefined;
+  games: InfiniteData<IAllGamesResponse | undefined> | undefined;
   error: Error | null;
   isLoading: boolean;
   selectedGenre?: TSelectedGenre;
+  fetchNextPage?: () => void;
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
 }

@@ -1,11 +1,12 @@
+import { IAllGamesResponse } from "./AllGame";
 import { IGenreResult } from "./genre";
 import { IPlatforms } from "./platform";
 
 export interface IFetchResponse<T> {
   count: number;
   results: T[];
-  next?: string;
-  previous?: string;
+  next?: string | null;
+  previous?: string | null;
 }
 
 export type TSelectedGenre = IGenreResult | null;
@@ -16,4 +17,9 @@ export interface IQueryObject {
   platform: TSelectedPlatform;
   order: string;
   search: string;
+}
+
+export interface IBaseResponse {
+  pageParams: any[];
+  pages: IAllGamesResponse;
 }

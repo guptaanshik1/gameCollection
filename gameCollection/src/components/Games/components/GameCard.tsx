@@ -6,7 +6,7 @@ import { getCroppedImageUrl } from "../../../utils/getCropppedImageUrl";
 import GameEmojis from "./GameEmojis";
 
 interface IProps {
-  game: IAllGameResult;
+  game: IAllGameResult | undefined;
 }
 
 const GameCard = ({ game }: IProps) => {
