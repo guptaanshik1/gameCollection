@@ -9,8 +9,8 @@ async function getGames(
 ): Promise<IAllGamesResponse | undefined> {
   const { data } = await axiosInstance.get("/games", {
     params: {
-      genres: queryObject?.genre?.id,
-      parent_platforms: queryObject?.platform?.id,
+      genres: queryObject?.genreId,
+      parent_platforms: queryObject?.platformId,
       ordering: queryObject?.order,
       search: queryObject?.search,
       page: pageParam,

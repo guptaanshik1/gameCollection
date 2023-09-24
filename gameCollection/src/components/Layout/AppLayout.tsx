@@ -33,10 +33,10 @@ const AppLayout = () => {
       <Show above="lg">
         <GridItem area="aside" p={"10px"}>
           <GenreList
-            onSelectedGenre={(genre) =>
-              setQueryObject({ ...queryObject, genre })
+            onSelectedGenre={(genreId) =>
+              setQueryObject({ ...queryObject, genreId })
             }
-            selectedGenre={queryObject?.genre}
+            selectedGenreId={queryObject?.genreId}
           />
         </GridItem>
       </Show>
@@ -44,9 +44,9 @@ const AppLayout = () => {
         <GameHeading queryObject={queryObject} />
         <Flex my={"10px"} gridGap={"20px"}>
           <PlatformList
-            platform={queryObject?.platform}
-            onSelectedPlatform={(platform) =>
-              setQueryObject({ ...queryObject, platform })
+            platformId={queryObject?.platformId}
+            onSelectedPlatform={(platformId) =>
+              setQueryObject({ ...queryObject, platformId })
             }
           />
           <SortList

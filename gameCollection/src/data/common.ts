@@ -13,8 +13,8 @@ export type TSelectedGenre = IGenreResult | null;
 export type TSelectedPlatform = IPlatforms | null;
 
 export interface IQueryObject {
-  genre: TSelectedGenre;
-  platform: TSelectedPlatform;
+  genreId?: number;
+  platformId?: number;
   order: string;
   search: string;
 }
