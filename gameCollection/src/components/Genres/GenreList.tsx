@@ -9,14 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { useGenres } from "../../hooks/useGenres";
 import { getCroppedImageUrl } from "../../utils/getCropppedImageUrl";
+import useQueryStore from "../../app/useQueryStore";
 
-interface IProps {
-  onSelectedGenre: (genreId?: number) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ onSelectedGenre, selectedGenreId }: IProps) => {
+const GenreList = () => {
   const { data: genres, isLoading } = useGenres();
+  const [genreId, setGenreId] = useQueryStore((state) => [
+    state.queryObject.genreId,
+    state.setGenreId,
+  ]);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -47,9 +47,9 @@ const GenreList = ({ onSelectedGenre, selectedGenreId }: IProps) => {
                   objectFit={"cover"}
                 />
                 <Text
-                  fontWeight={genre?.id === selectedGenreId ? 700 : 400}
+                  fontWeight={genre?.id === genreId ? 700 : 400}
                   cursor={"pointer"}
-                  onClick={() => onSelectedGenre(genre?.id)}
+                  onClick={() => setGenreId(genre?.id)}
                 >
                   {genre?.name}
                 </Text>

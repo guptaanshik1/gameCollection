@@ -2,14 +2,14 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { usePlatforms } from "../../hooks/usePlatforms";
 import usePlatform from "../../hooks/usePlatform";
+import useQueryStore from "../../app/useQueryStore";
 
-interface IProps {
-  onSelectedPlatform: (platformId?: number) => void;
-  platformId?: number;
-}
-
-const PlatformList = ({ onSelectedPlatform, platformId }: IProps) => {
+const PlatformList = () => {
   const { data: platforms, error } = usePlatforms();
+  const [platformId, setPlatformId] = useQueryStore((state) => [
+    state.queryObject.platformId,
+    state.setPlatformId,
+  ]);
 
   if (error) return null;
   const platform = usePlatform(platformId);
@@ -24,7 +24,7 @@ const PlatformList = ({ onSelectedPlatform, platformId }: IProps) => {
           return (
             <MenuItem
               key={platform?.id}
-              onClick={() => onSelectedPlatform(platform?.id)}
+              onClick={() => setPlatformId(platform?.id)}
             >
               {platform?.name}
             </MenuItem>

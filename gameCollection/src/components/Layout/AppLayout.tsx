@@ -2,17 +2,11 @@ import { Grid, GridItem, Flex, Show } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import { Games } from "../Games";
 import GenreList from "../Genres/GenreList";
-import { useState } from "react";
-import { IQueryObject } from "../../data/common";
 import PlatformList from "../Platforms/PlatformList";
 import SortList from "../SortOrder/SortList";
 import GameHeading from "../GameHeading";
 
 const AppLayout = () => {
-  const [queryObject, setQueryObject] = useState<IQueryObject>(
-    {} as IQueryObject
-  );
-
   return (
     <Grid
       templateAreas={{
@@ -26,37 +20,20 @@ const AppLayout = () => {
       p={"10px 16px"}
     >
       <GridItem area="nav">
-        <Navbar
-          onSearch={(search) => setQueryObject({ ...queryObject, search })}
-        />
+        <Navbar />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" p={"10px"}>
-          <GenreList
-            onSelectedGenre={(genreId) =>
-              setQueryObject({ ...queryObject, genreId })
-            }
-            selectedGenreId={queryObject?.genreId}
-          />
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area="main" p={"10px"}>
-        <GameHeading queryObject={queryObject} />
+        <GameHeading />
         <Flex my={"10px"} gridGap={"20px"}>
-          <PlatformList
-            platformId={queryObject?.platformId}
-            onSelectedPlatform={(platformId) =>
-              setQueryObject({ ...queryObject, platformId })
-            }
-          />
-          <SortList
-            onSelectSortOrder={(order) =>
-              setQueryObject({ ...queryObject, order })
-            }
-            sortOrder={queryObject?.order}
-          />
+          <PlatformList />
+          <SortList />
         </Flex>
-        <Games queryObject={queryObject} />
+        <Games />
       </GridItem>
     </Grid>
   );

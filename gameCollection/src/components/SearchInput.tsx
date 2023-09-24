@@ -1,13 +1,11 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
+import useQueryStore from "../app/useQueryStore";
 
-interface IProps {
-  onSearch: (searchText: string) => void;
-}
-
-const SearchInput = ({ onSearch }: IProps) => {
+const SearchInput = () => {
   const searchRef = useRef<HTMLInputElement>(null);
+  const setSearchText = useQueryStore((state) => state.setSearchText);
 
   return (
     <form
@@ -15,7 +13,7 @@ const SearchInput = ({ onSearch }: IProps) => {
       onSubmit={(e) => {
         e.preventDefault();
         if (searchRef.current) {
-          onSearch(searchRef.current.value);
+          setSearchText(searchRef.current.value);
         }
       }}
     >

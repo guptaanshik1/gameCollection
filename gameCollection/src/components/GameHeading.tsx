@@ -1,15 +1,15 @@
 import { Heading } from "@chakra-ui/react";
-import { IQueryObject } from "../data/common";
 import usePlatform from "../hooks/usePlatform";
 import useGenre from "../hooks/useGenre";
+import useQueryStore from "../app/useQueryStore";
 
-interface IProps {
-  queryObject: IQueryObject;
-}
-
-const GameHeading = ({ queryObject }: IProps) => {
-  const genre = useGenre(queryObject?.genreId);
-  const platform = usePlatform(queryObject?.platformId);
+const GameHeading = () => {
+  const [genreId, platformId] = useQueryStore((state) => [
+    state.queryObject.genreId,
+    state.queryObject.platformId,
+  ]);
+  const genre = useGenre(genreId);
+  const platform = usePlatform(platformId);
 
   return (
     <Heading as={"h1"}>

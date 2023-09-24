@@ -2,6 +2,7 @@ import { axiosInstance } from "../services/apiClient";
 import { IQueryObject } from "../data/common";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { IAllGamesResponse } from "../data/AllGame";
+import useQueryStore from "../app/useQueryStore";
 
 async function getGames(
   queryObject: IQueryObject,
@@ -20,7 +21,8 @@ async function getGames(
   return data;
 }
 
-export default function useAllGamesData(queryObject: IQueryObject) {
+export default function useAllGamesData() {
+  const queryObject = useQueryStore((state) => state.queryObject);
   const {
     data,
     error,

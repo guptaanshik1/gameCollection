@@ -15,8 +15,8 @@ export type TSelectedPlatform = IPlatforms | null;
 export interface IQueryObject {
   genreId?: number;
   platformId?: number;
-  order: string;
-  search: string;
+  order?: string;
+  search?: string;
 }
 
 export interface IBaseResponse {

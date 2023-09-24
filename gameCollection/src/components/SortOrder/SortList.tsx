@@ -1,12 +1,8 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useQueryStore from "../../app/useQueryStore";
 
-interface IProps {
-  onSelectSortOrder: (order: string) => void;
-  sortOrder: string;
-}
-
-const SortList = ({ onSelectSortOrder, sortOrder }: IProps) => {
+const SortList = () => {
   const sortMap = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -15,6 +11,10 @@ const SortList = ({ onSelectSortOrder, sortOrder }: IProps) => {
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average Rating" },
   ];
+  const [sortOrder, setSortOrder] = useQueryStore((state) => [
+    state.queryObject.order,
+    state.setSortOrder,
+  ]);
 
   const getSelectedSortOrder = () => {
     return sortMap.find((order) => order.value === sortOrder)?.label;
@@ -31,7 +31,7 @@ const SortList = ({ onSelectSortOrder, sortOrder }: IProps) => {
             <MenuItem
               key={order.value}
               value={order.value}
-              onClick={() => onSelectSortOrder(order.value)}
+              onClick={() => setSortOrder(order.value)}
             >
               {order.label}
             </MenuItem>

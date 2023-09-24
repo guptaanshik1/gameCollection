@@ -1,13 +1,8 @@
 import GamesView from "./Games.view";
 import { GamesContext } from "./utils/context";
 import useAllGamesData from "../../hooks/useAllGamesData";
-import { IQueryObject } from "../../data/common";
 
-interface IProps {
-  queryObject: IQueryObject;
-}
-
-export default function GamesContainer({ queryObject }: IProps) {
+export default function GamesContainer() {
   const {
     data: games,
     error,
@@ -15,7 +10,7 @@ export default function GamesContainer({ queryObject }: IProps) {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useAllGamesData(queryObject);
+  } = useAllGamesData();
 
   return (
     <GamesContext.Provider
