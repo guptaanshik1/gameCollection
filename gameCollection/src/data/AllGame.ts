@@ -186,3 +186,11 @@ export interface IGameTrailer {
   preview: string;
   data: Record<number | string, string>;
 }
+
+export interface IGameScreenshot {
+  id: number;
+  image: string;
+  hidden: boolean;
+  height: number;
+  width: number;
+}

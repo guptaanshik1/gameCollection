@@ -4,6 +4,7 @@ import CustomSpinner from "../../components/CustomSpinner";
 import ExpandableText from "../../components/ExpandableText";
 import GameAttributes from "./components/GameAttributes";
 import GameTrailer from "./components/GameTrailer";
+import GameScreenshots from "./components/GameScreenshots";
 
 export default function GameDetailsPageView() {
   const { isGameDetailLoading, gameData } = useGameDetailsPageContext();
@@ -14,6 +15,7 @@ export default function GameDetailsPageView() {
       <Heading>{gameData?.name}</Heading>
       <ExpandableText children={gameData?.description_raw} />
       <GameAttributes />
+      <GameScreenshots />
       <GameTrailer />
     </Flex>
   );

@@ -3,6 +3,7 @@ import GameDetailsPageView from "./GameDetailsPage.view";
 import { GameDetailsPageContext } from "./utils/context";
 import useGetGameDetail from "./hooks/useGetGameDetail";
 import useGetGameTrailers from "./hooks/useGetGameTrailers";
+import useGetGameScreenshots from "./hooks/useGetGameScreenshots";
 
 export default function GameDetailsPageContainer() {
   const { slug } = useParams<{ slug: string }>();
@@ -21,6 +22,12 @@ export default function GameDetailsPageContainer() {
     error: gameTrailerError,
   } = useGetGameTrailers(gameData?.id);
 
+  const {
+    data: screenshotData,
+    error: screenshotError,
+    isLoading: isScreenshotLoading,
+  } = useGetGameScreenshots(gameData?.id);
+
   return (
     <GameDetailsPageContext.Provider
       value={{
@@ -29,6 +36,9 @@ export default function GameDetailsPageContainer() {
         gameTrailerData,
         isGameTrailerLoading,
         gameTrailerError,
+        screenshotData,
+        screenshotError,
+        isScreenshotLoading,
       }}
     >
       <GameDetailsPageView />

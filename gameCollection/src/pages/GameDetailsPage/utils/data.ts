@@ -1,4 +1,8 @@
-import { IGameDetail, IGameTrailer } from "../../../data/AllGame";
+import {
+  IGameDetail,
+  IGameScreenshot,
+  IGameTrailer,
+} from "../../../data/AllGame";
 import { IFetchResponse } from "../../../data/common";
 
 export interface IContextData {
@@ -7,4 +11,7 @@ export interface IContextData {
   gameTrailerData: IFetchResponse<IGameTrailer> | undefined;
   isGameTrailerLoading: boolean;
   gameTrailerError: Error | null;
+  screenshotData: IFetchResponse<IGameScreenshot> | undefined;
+  screenshotError: Error | null;
+  isScreenshotLoading: boolean;
 }
