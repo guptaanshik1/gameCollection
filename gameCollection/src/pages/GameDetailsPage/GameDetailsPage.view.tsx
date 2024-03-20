@@ -1,9 +1,7 @@
-import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { useGameDetailsPageContext } from "./utils/context";
 import CustomSpinner from "../../components/CustomSpinner";
 import ExpandableText from "../../components/ExpandableText";
-import DefinitionItem from "../../components/DefinitionItem";
-import CriticScore from "../../components/Games/components/CriticScore";
 import GameAttributes from "./components/GameAttributes";
 import GameTrailer from "./components/GameTrailer";
 
