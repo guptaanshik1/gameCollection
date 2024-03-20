@@ -179,3 +179,10 @@ export interface IPublisher {
   name: string;
   slug: string;
 }
+
+export interface IGameTrailer {
+  id: number;
+  name: string;
+  preview: string;
+  data: Record<number | string, string>;
+}
