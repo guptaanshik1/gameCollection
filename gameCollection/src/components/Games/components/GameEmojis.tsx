@@ -15,7 +15,7 @@ const GameEmojis = ({ rating }: IProps) => {
     5: { src: bullsEye, alt: "bullsEyeEmoji", boxSize: "35px" },
   };
 
-  return <Image {...emojiRatingMapper[rating]} />;
+  return <Image mt={"-3"} {...emojiRatingMapper[rating]} />;
 };
 
 export default GameEmojis;

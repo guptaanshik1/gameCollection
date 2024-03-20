@@ -122,3 +122,60 @@ export interface IAllGameResult {
   esrb_rating: Esrb_rating;
   short_screenshots: IShortScreenshot[];
 }
+
+export interface IGameDetail {
+  achievements_count: number;
+  added: number;
+  added_by_status: IAddedByStatus;
+  additions_count: number;
+  background_image: string;
+  background_image_additional: string;
+  creators_count: number;
+  description: string;
+  description_raw: string;
+  developers: IDeveloper[];
+  dominant_color: string;
+  game_series_count: number;
+  genres: IGenre[];
+  esrb_rating: Esrb_rating;
+  id: number;
+  metacritic: number;
+  name: string;
+  name_original: string;
+  parent_achievements_count: number;
+  parent_platforms: IParentPlatform[];
+  platforms: IPlatformPlatforms[];
+  publishers: IPublisher[];
+  rating: number;
+  rating_top: number;
+  ratings: IRating[];
+  ratings_count: number;
+  reactions: Record<number, number>;
+  released: string;
+  reviews_count: number;
+  reviews_text_count: number;
+  screenshots_count: number;
+  slug: string;
+  stores: IStore[];
+  suggestions_count: number;
+  tags: Tag[];
+  twitch_count: number;
+  website: string;
+  youtube_count: number;
+}
+
+export interface IDeveloper {
+  games_count: number;
+  id: number;
+  image_background: string;
+  name: string;
+  slug: string;
+}
+
+export interface IPublisher {
+  games_count: number;
+  id: number;
+  image_background: string;
+  name: string;
+  slug: string;
+}

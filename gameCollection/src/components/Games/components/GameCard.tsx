@@ -4,14 +4,22 @@ import PlatformIconsMap from "./PlatformIconsMap";
 import CriticScore from "./CriticScore";
 import { getCroppedImageUrl } from "../../../utils/getCropppedImageUrl";
 import GameEmojis from "./GameEmojis";
+import HoveredCardExtra from "./HoveredCardExtra";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface IProps {
   game: IAllGameResult | undefined;
 }
 
 const GameCard = ({ game }: IProps) => {
+  const [isCardHovered, setIsCardHovered] = useState(false);
+
   return (
-    <Card>
+    <Card
+      onMouseOver={() => setIsCardHovered(true)}
+      onMouseOut={() => setIsCardHovered(false)}
+    >
       <Image src={getCroppedImageUrl(game?.background_image)} />
 
       <CardBody>
@@ -28,10 +36,15 @@ const GameCard = ({ game }: IProps) => {
           </Flex>
           <CriticScore score={game?.metacritic} />
         </HStack>
-        <Heading fontSize={"20px"} cursor={"pointer"} mb={"10px"}>
-          {game?.name}
-        </Heading>
-        <GameEmojis rating={game?.rating_top} />
+        <Flex alignItems={"center"} gridGap={"8px"}>
+          <Link to={`/games/${game?.slug}`}>
+            <Heading fontSize={"20px"} cursor={"pointer"} mb={"10px"}>
+              {game?.name}
+            </Heading>
+          </Link>
+          <GameEmojis rating={game?.rating_top} />
+        </Flex>
+        {isCardHovered && <HoveredCardExtra game={game} />}
       </CardBody>
     </Card>
   );
